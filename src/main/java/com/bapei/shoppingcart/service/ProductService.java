@@ -1,10 +1,14 @@
 package com.bapei.shoppingcart.service;
 
+import com.bapei.shoppingcart.dao.ProductDAO;
 import com.bapei.shoppingcart.entity.Product;
-import org.springframework.validation.annotation.Validated;
+import com.bapei.shoppingcart.entity.Review;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import java.util.List;
+
+import com.bapei.shoppingcart.entity.ResponseEntity;
 
 @Service
 public class ProductService {
@@ -23,5 +27,4 @@ public class ProductService {
 	public ResponseEntity<Review> saveReview(int productId,int userId,Review review) {
 		return productDAO.saveReview(productId, userId, review);
 	}
-}
 }

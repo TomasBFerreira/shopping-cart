@@ -1,6 +1,19 @@
 package com.bapei.shoppingcart.dao;
 
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Repository;
+
 import com.bapei.shoppingcart.entity.Product;
+import com.bapei.shoppingcart.entity.ResponseEntity;
+import com.bapei.shoppingcart.entity.Review;
+import com.bapei.shoppingcart.entity.User;
+import com.bapei.shoppingcart.repository.ProductRepository;
+import com.bapei.shoppingcart.repository.ReviewRepository;
+import com.bapei.shoppingcart.repository.UserRepository;
 
 @Repository
 public class ProductDAO {
@@ -19,7 +32,7 @@ public class ProductDAO {
 	}
 	
 	public List<Product> getAllProducts() {
-		return productRepository.findAll();
+		return (List<Product>) productRepository.findAll();
 	}
 	
 	public ResponseEntity<Review> saveReview(int productId,int userId,Review review) {
@@ -34,7 +47,7 @@ public class ProductDAO {
 			return response;
 		}
 		
-		Optional<Product> productOptional = productRepository.findById(productId);
+		Optional<Product> productOptional = productRepository.findById((long) productId);
 		if(productOptional!=null) {
 			Product productResult = productOptional.get();
 			review.setProduct(productResult);
